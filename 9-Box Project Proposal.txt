@@ -5,7 +5,7 @@ Name: Ed Fenton
 
  Project Description: 9-box is a talent management tool that allows people managers to assess the potential and performance of their direct reports for the purposes of development planning.  The key benefit is the dashboard visualization that will allow the ratings to be made relative to other team members to ensure correct callibration.
  
-New Programming Concept(s) I'm Planning to Learn:
+New Programming Concept(s) I'm Planning to Learn: Login and registration with protected routes
 
 Week 1 Features (to show at Review during Week 2)
 SERVER SIDE - tested / demonstrated via Postman and MongoDB Compass
