@@ -1,0 +1,32 @@
+Name: Ed Fenton
+ Project Title: 9-Box
+ Project Stack: MERN
+ GitHub Repo Link: https://github.com/edfenton/9box
+
+ Project Description: 9-box is a talent management tool that allows people managers to assess the potential and performance of their direct reports for the purposes of development planning.  The key benefit is the dashboard visualization that will allow the ratings to be made relative to other team members to ensure correct callibration.
+ 
+New Programming Concept(s) I'm Planning to Learn:
+
+Week 1 Features (to show at Review during Week 2)
+SERVER SIDE - tested / demonstrated via Postman and MongoDB Compass
+1) Created 9-Box database and team member collection
+2) Create team member route
+3) View all team member route
+4) View one team member route
+5) Edit team member route
+6) Delete team member route
+7) View all team member route with filters
+
+Week 2 Features (to show at the first office hour/lecture of Week 3)
+CLIENT SIDE - tested / demonstrated via Chrome Browser
+8) Created React app
+9) Dashboard (view all) screen with filters
+10) Add team member screen
+11) View one team member screen
+12) Edit team member screen
+13) Delete team member function
+
+Product Backlog (If I have more time after completing my MVP, I'll start to work on...)
+A) Application is publicly deployed
+B) Login and registration with validations and protected routes
+C) Application features a third-party API (Gravitar for team member photos)
