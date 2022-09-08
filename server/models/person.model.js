@@ -15,7 +15,7 @@ const PersonSchema = new mongoose.Schema({
       require: [ true, "Area is required" ],
       enum: {
         values: [ 'Architecture', 'Business Analysis', 'Change Management', 'Data & Integration', 'Development', 'DevOps', 'Leadership', 'Project Management', 'Quality Assurance', 'Support', 'User Experience' ],
-        message: "Must select an allowed option"
+        message: "Select an available option"
       }
     },
     level: {
@@ -23,7 +23,7 @@ const PersonSchema = new mongoose.Schema({
       require: [ true, "Level is required" ],
       enum: {
         values: [ 'Individual Contributor', 'Lead / Supervisor', 'Manager', 'Director', 'Executive' ],
-        message: "Must select an allowed option"
+        message: "Select an available option"
       }
     },
     potential: {
@@ -31,7 +31,7 @@ const PersonSchema = new mongoose.Schema({
       require: [ true, "Potential is required" ],
       enum: {
         values: [ 'Broad', 'Versatile', 'Specialized' ],
-        message: "Must select an allowed option"
+        message: "Select an available option"
       }
     },
     performance: {
@@ -39,7 +39,7 @@ const PersonSchema = new mongoose.Schema({
       require: [ true, "Performance over time is required" ],
       enum: {
         values: [ 'Exceptional', 'Consistent', 'Inconsistent' ],
-        message: "Must select an allowed option"
+        message: "Select an available option"
       }
     },
     strengths: {
@@ -54,14 +54,14 @@ const PersonSchema = new mongoose.Schema({
       type: String,
       enum: {
         values: [ 'Low', 'Medium', 'High' ],
-        message: "Must select an allowed option"
+        message: "Select an available option"
       }
     },
     ready: {
       type: String,
       enum: {
         values: [ 'Now', '1 - 3 Years', '3 - 5 Years', 'Well Placed' ],
-        message: "Must select an allowed option"
+        message: "Select an available option"
       }
     }
 },{ timestamps: true });

@@ -78,7 +78,7 @@ const CreateForm = () => {
               name={ level }
               defaultValue="none"
             >
-              <option value="none" disabled hidden>Select Level</option>
+              <option value="none" disabled hidden>Select a Level</option>
               <option value="Individual Contributor">Individual Contributor</option>
               <option value="Lead / Supervisor">Lead / Supervisor</option>
               <option value="Manager">Manager</option>
@@ -115,7 +115,7 @@ const CreateForm = () => {
               name={ potential }
               defaultValue="none"
             >
-              <option value="none" disabled hidden>Select Potential</option>
+              <option value="none" disabled hidden>Select a Potential rating</option>
               <option value="Broad">Broad</option>
               <option value="Versatile">Versatile</option>
               <option value="Specialized">Specialized</option>
@@ -130,7 +130,7 @@ const CreateForm = () => {
               name={ performance }
               defaultValue="none"
             >
-              <option value="none" disabled hidden>Select Performance Over Time</option>
+              <option value="none" disabled hidden>Select a Performance Over Time rating</option>
               <option value="Exceptional">Exceptional</option>
               <option value="Consistent">Consistent</option>
               <option value="Inconsistent">Inconsistent</option>
