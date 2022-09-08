@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CreateForm = () => {
 
@@ -34,7 +34,7 @@ const CreateForm = () => {
         </div>
         <div className="row mb-3 pb-3 border-bottom">
           <div className="col">
-            <label className="form-label">Name:</label>
+            <label className="form-label">Name</label>
             <input 
               className="form-control"
               onChange={ (e) => setName(e.target.value) }
@@ -46,10 +46,10 @@ const CreateForm = () => {
             { errors.name ? <p className="text-danger">{ errors.name.message }</p> : null }
           </div>
           <div className="col">
-            <label className="form-label">Area:</label>
+            <label className="form-label">Area</label>
             <select
               className="form-select"
-              aria-label="Defaul select example"
+              aria-label="Default select example"
               onChange={ (e) => setArea(e.target.value) }
               name={ area }
               defaultValue="none"
@@ -70,10 +70,10 @@ const CreateForm = () => {
             { errors.area ? <p className="text-danger">{ errors.area.message }</p> : null }
           </div>
           <div className="col">
-          <label className="form-label">Level:</label>
+          <label className="form-label">Level</label>
             <select
               className="form-select"
-              aria-label="Defaul select example"
+              aria-label="Default select example"
               onChange={ (e) => setLevel(e.target.value) }
               name={ level }
               defaultValue="none"
@@ -110,7 +110,7 @@ const CreateForm = () => {
           <div className="col">
             <select
               className="form-select"
-              aria-label="Defaul select example"
+              aria-label="Default select example"
               onChange={ (e) => setPotential(e.target.value) }
               name={ potential }
               defaultValue="none"
@@ -125,7 +125,7 @@ const CreateForm = () => {
           <div className="col">
             <select
               className="form-select"
-              aria-label="Defaul select example"
+              aria-label="Default select example"
               onChange={ (e) => setPerformance(e.target.value) }
               name={ performance }
               defaultValue="none"
@@ -138,7 +138,7 @@ const CreateForm = () => {
             { errors.performance ? <p className="text-danger">{ errors.performance.message }</p> : null }
           </div>
         </div>
-        <div className="row">
+        <div className="row mb-3 pb-3 border-bottom">
           <div className="col">
             <p><u>Rating Options</u></p>
             <p><strong>Broad: </strong>Highly learning agile and aspires to be effective in a wide range of leadership roles and significantly more complex situations.</p>
@@ -154,11 +154,15 @@ const CreateForm = () => {
         </div>
         <div className="row">
           <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button className="btn btn-link" onClick={ () => navigate("/") }>Cancel</button>
-            <button className="btn btn-primary" type="submit"><i className="bi bi-person-plus-fill"></i> Add Team Member</button>
+            <button className="btn btn-primary" type="submit"><i className="bi bi-person-plus-fill"></i> Add { name }</button>
           </div>
         </div>
       </form>
+      <div className="row p-3">
+          <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button className="btn btn-link" onClick={ () => navigate("/") }>Cancel</button>
+          </div>
+        </div>
     </div>
   );
 

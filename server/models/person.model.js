@@ -52,15 +52,19 @@ const PersonSchema = new mongoose.Schema({
     },
     risk: {
       type: String,
+      require: [ true, "Flight risk rating is required" ],
+      default: "Unrated",
       enum: {
-        values: [ 'Low', 'Medium', 'High' ],
+        values: [ 'Unrated', 'Low', 'Medium', 'High' ],
         message: "Select an available option"
       }
     },
     ready: {
       type: String,
+      require: [ true, "Readiness rating is required" ],
+      default: "Unrated",
       enum: {
-        values: [ 'Now', '1 - 3 Years', '3 - 5 Years', 'Well Placed' ],
+        values: [ 'Unrated', 'Now', '1 - 3 Years', '3 - 5 Years', 'Well Placed' ],
         message: "Select an available option"
       }
     }

@@ -4,6 +4,8 @@ import './App.css';
 import Nav from './components/Header'
 import Home from './components/Home';
 import CreateForm from './components/CreateForm';
+import ViewPerson from './components/ViewPerson';
+import EditForm from './components/EditForm';
 import Footer from './components/Footer';
 
 function App() {
@@ -14,8 +16,8 @@ function App() {
         <Routes>
           <Route element={ <Home /> } path="/" default/>
           <Route element={ <CreateForm /> } path="/person/create" />
-          {/* <Route element={ <ViewPerson /> } path="/person/view/:id" />
-          <Route element={ <EditForm /> } path="person/edit/:id" /> */}
+          <Route element={ <ViewPerson /> } path="/person/view/:id" />
+          <Route element={ <EditForm /> } path="person/edit/:id" />
         </Routes>
       </BrowserRouter>
       <Footer />

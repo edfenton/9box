@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Home = () => {
@@ -52,6 +52,9 @@ const Home = () => {
           })}
         </tbody>
       </table>
+      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button className="btn btn-primary" onClick={ () => navigate("/person/create") }><i className="bi bi-person-plus-fill"></i> Add New Team Member</button>
+      </div>
     </div>
   );
 

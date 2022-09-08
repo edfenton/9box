@@ -1,8 +1,11 @@
+import logo from '../assets/logo192.png';
+
 const Header = () => {
 
   return (
     <div className="d-flex align-items-center pt-3">
-      <p className="display-6"><span className="text-primary fw-bolder  ">9-Box</span> Performance & Potential Matrix</p>
+      <img src={logo} height="50" alt="Logo number nine" />
+      <p className="display-6">-Box Performance & Potential Matrix</p>
     </div>
   );
 
