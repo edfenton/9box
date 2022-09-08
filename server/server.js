@@ -11,9 +11,6 @@ app.use(cors({
 
 require("./config/mongoose.config");
 
-const homeRoutes = require('./routes/home.routes');
-homeRoutes(app);
-
 const personRoutes = require('./routes/person.routes');
 personRoutes(app);
 

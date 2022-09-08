@@ -10,25 +10,37 @@ const PersonSchema = new mongoose.Schema({
       unique: true,
       uniqueCaseInsensitive: true
     },
-    function: {
+    area: {
       type: String,
-      require: [ true, "Function is required" ],
-      enum: [ 'Architecture', 'Business Analysis', 'Change Management', 'Data & Integration', 'Development', 'DevOps', 'Leadership', 'Project Management', 'Quality Assurance', 'Support', 'User Experience' ]
+      require: [ true, "Area is required" ],
+      enum: {
+        values: [ 'Architecture', 'Business Analysis', 'Change Management', 'Data & Integration', 'Development', 'DevOps', 'Leadership', 'Project Management', 'Quality Assurance', 'Support', 'User Experience' ],
+        message: "Must select an allowed option"
+      }
     },
     level: {
       type: String,
       require: [ true, "Level is required" ],
-      enum: [ 'Individual Contributor', 'Lead / Supervisor', 'Manager', 'Director', 'Executive' ]
+      enum: {
+        values: [ 'Individual Contributor', 'Lead / Supervisor', 'Manager', 'Director', 'Executive' ],
+        message: "Must select an allowed option"
+      }
     },
     potential: {
       type: String,
       require: [ true, "Potential is required" ],
-      enum: [ 'Broad', 'Versatile', 'Specialized' ]
+      enum: {
+        values: [ 'Broad', 'Versatile', 'Specialized' ],
+        message: "Must select an allowed option"
+      }
     },
     performance: {
       type: String,
       require: [ true, "Performance over time is required" ],
-      enum: [ 'Exceptional', 'Consistent', 'Inconsistent' ]
+      enum: {
+        values: [ 'Exceptional', 'Consistent', 'Inconsistent' ],
+        message: "Must select an allowed option"
+      }
     },
     strengths: {
       type: String,
@@ -40,17 +52,23 @@ const PersonSchema = new mongoose.Schema({
     },
     risk: {
       type: String,
-      enum: [ 'Low', 'Medium', 'High' ]
+      enum: {
+        values: [ 'Low', 'Medium', 'High' ],
+        message: "Must select an allowed option"
+      }
     },
     ready: {
       type: String,
-      enum: [ 'Now', '1 - 3 Years', '3 - 5 Years', 'Well Placed' ]
+      enum: {
+        values: [ 'Now', '1 - 3 Years', '3 - 5 Years', 'Well Placed' ],
+        message: "Must select an allowed option"
+      }
     }
 },{ timestamps: true });
 
 PersonSchema.plugin(uniqueValidator, {
   type: 'mongoose-unique-validator',
-  message: '{PATH} must be unique'
+  message: 'Team member {PATH} must be unique'
 });
 
 module.exports = mongoose.model('Person', PersonSchema);
