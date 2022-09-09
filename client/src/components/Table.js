@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
-const Table = () => {
+const Table = (props) => {
 
+  const { peopleParms } = props;
   const navigate = useNavigate();
   const [ tablePersonList, setTablePersonList ] = useState([]);
 
