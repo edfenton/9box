@@ -10,6 +10,17 @@ const PersonSchema = new mongoose.Schema({
       unique: true,
       uniqueCaseInsensitive: true
     },
+    // email: {
+    //   type: String,
+    //   require: [ true, "Email is required" ],
+    //   minLength: [ 3, "Email must be at least 3 characters long" ],
+    //   maxLength: [ 255, "Email must be at most 255 characters long" ],
+    //   validate: {
+    //     validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
+    //     message: "Please enter a valid email"
+    //   },
+    //   unique: true
+    // },
     area: {
       type: String,
       require: [ true, "Area is required" ],

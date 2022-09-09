@@ -32,6 +32,8 @@ const Table = (props) => {
               <th scope="col">Versatile</th>
               <th scope="col">Broad</th>
             </tr>
+          </thead>
+          <tbody>
             <tr>
               <th scope="row" className="text-center"><span className="fw-bold vertical-text">Exceptional</span></th>
               <td className="table-primary align-top">
@@ -230,7 +232,7 @@ const Table = (props) => {
                 </ul>
               </td>
             </tr>
-          </thead>
+          </tbody>
         </table>
       </div>
       <div className="row">
