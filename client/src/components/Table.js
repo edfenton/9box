@@ -6,7 +6,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
 const Table = (props) => {
 
-  const { peopleParms } = props;
   const navigate = useNavigate();
   const [ tablePersonList, setTablePersonList ] = useState([]);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import Dashboard from './views/Dashboard';
+import Table from './components/Table';
 import CreateForm from './components/CreateForm';
 import ViewPerson from './components/ViewPerson';
 import EditForm from './components/EditForm';
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route element={ <Dashboard /> } path="/dashboard" default />
+          <Route element={ <Table /> } path="/dashboard" default />
           <Route element={ <CreateForm /> } path="/person/create" />
           <Route element={ <ViewPerson /> } path="/person/view/:id" />
           <Route element={ <EditForm /> } path="person/edit/:id" />
