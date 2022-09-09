@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
@@ -7,8 +6,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "First name is required"],
     minLength: [ 3, "First must be at least 3 characters long" ],
-    maxLength: [ 255, "First must be at most 255 characters long" ],
-    unique: true
+    maxLength: [ 255, "First must be at most 255 characters long" ]
   },
   lastName: {
     type: String,
@@ -24,7 +22,7 @@ const UserSchema = new mongoose.Schema({
     validate: {
       validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
       message: "Please enter a valid email"
-    }
+    },
   },
   password: {
     type: String,
@@ -34,16 +32,12 @@ const UserSchema = new mongoose.Schema({
   }
 }, {timestamps: true});
 
-UserSchema.plugin(uniqueValidator, {
-  type: 'mongoose-unique-validator',
-  message: 'Team member {PATH} must be unique'
-});
-
 UserSchema.virtual('confirmPassword')
   .get( () => this._confirmPassword )
-  .set( value => this._confirmPassword = value );
+  .set( (value) => this._confirmPassword = value );
 
 UserSchema.pre('validate', function(next) {
+  console.log("Inside pre-validate");
   if (this.password !== this.confirmPassword) {
     this.invalidate('confirmPassword', 'Passwords must match');
   }
@@ -51,11 +45,15 @@ UserSchema.pre('validate', function(next) {
 });
 
 UserSchema.pre('save', function(next) {
+  console.log("Inside pre-save");
   bcrypt.hash(this.password, 10)
-    .then(hash => {
-      this.password = hash;
+    .then((hashedPassword) => {
+      this.password = hashedPassword;
       next();
+    })
+    .catch((err) => {
+      console.log("Error while hashing the password")
     });
 });
 
-module.exports = mongoose.model('Person', PersonSchema);
+module.exports = mongoose.model('User', UserSchema);

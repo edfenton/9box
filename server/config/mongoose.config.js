@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbName = '9box';
+const dbName = process.env.DB_NAME;
 
 mongoose.connect(`mongodb://localhost/${ dbName }`, {
   useNewUrlParser: true,
