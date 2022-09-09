@@ -74,7 +74,7 @@ const ViewPerson = () => {
       </div>
       <div className="row p-3">
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button className="btn btn-link" onClick={ () => navigate("/") }>Cancel</button>
+          <button className="btn btn-link" onClick={ () => navigate("/dashboard") }>Back to Dashboard</button>
           <button className="btn btn-primary" onClick={ () => navigate(`/person/edit/${ singlePerson._id }`) }><i className="bi bi-person-lines-fill"></i> Update { singlePerson.name }</button>
         </div>
       </div>

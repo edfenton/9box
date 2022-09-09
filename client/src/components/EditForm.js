@@ -34,7 +34,7 @@ const EditForm = () => {
         setReady(res.data.ready);
         setLoaded(true);
       })
-      .catch();
+      .catch((err) => console.log(err));
   },[id]);
 
   const editHandler = (e) => {
@@ -57,7 +57,7 @@ const EditForm = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => console.log(err));
   };
@@ -240,7 +240,7 @@ const EditForm = () => {
           </form>
           <div className="row p-3">
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button className="btn btn-link" onClick={ () => navigate("/") }>Cancel</button>
+              <button className="btn btn-link" onClick={ () => navigate("/dashboard") }>Back to Dashboard</button>
               <button className="btn btn-danger" onClick={ deleteHandler }><i className="bi bi-person-x-fill"></i> Delete { name }</button>
             </div>
           </div>

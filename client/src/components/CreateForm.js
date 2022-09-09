@@ -18,7 +18,7 @@ const CreateForm = () => {
       .post("http://localhost:8000/api/people", { name, area, level, potential, performance })
       .then((res) => {
         console.log(res.data);
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         console.log(err.response.data.errors);
@@ -159,10 +159,10 @@ const CreateForm = () => {
         </div>
       </form>
       <div className="row p-3">
-          <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button className="btn btn-link" onClick={ () => navigate("/") }>Cancel</button>
-          </div>
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button className="btn btn-link" onClick={ () => navigate("/dashboard") }>Back to Dashboard</button>
         </div>
+      </div>
     </div>
   );
 
