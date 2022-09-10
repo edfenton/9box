@@ -15,12 +15,15 @@ const CreateForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/people", { name, area, level, potential, performance })
+      .post("http://localhost:8000/api/people", { name, area, level, potential, performance }, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         navigate("/dashboard");
       })
       .catch((err) => {
+        if(err.response.status === 401) {
+          navigate("/login");
+        }
         console.log(err.response.data.errors);
         setErrors(err.response.data.errors);
       });
@@ -39,7 +42,7 @@ const CreateForm = () => {
               className="form-control"
               onChange={ (e) => setName(e.target.value) }
               value={ name }
-              name={ name }
+              name="name"
               type="text"
               placeholder="Enter team member name"
             />
@@ -51,7 +54,7 @@ const CreateForm = () => {
               className="form-select"
               aria-label="Default select example"
               onChange={ (e) => setArea(e.target.value) }
-              name={ area }
+              name="area"
               defaultValue="none"
             >
               <option value="none" disabled hidden>Select an Area</option>
@@ -75,7 +78,7 @@ const CreateForm = () => {
               className="form-select"
               aria-label="Default select example"
               onChange={ (e) => setLevel(e.target.value) }
-              name={ level }
+              name="level"
               defaultValue="none"
             >
               <option value="none" disabled hidden>Select a Level</option>
@@ -112,7 +115,7 @@ const CreateForm = () => {
               className="form-select"
               aria-label="Default select example"
               onChange={ (e) => setPotential(e.target.value) }
-              name={ potential }
+              name="potential"
               defaultValue="none"
             >
               <option value="none" disabled hidden>Select a Potential rating</option>
@@ -127,7 +130,7 @@ const CreateForm = () => {
               className="form-select"
               aria-label="Default select example"
               onChange={ (e) => setPerformance(e.target.value) }
-              name={ performance }
+              name="performance"
               defaultValue="none"
             >
               <option value="none" disabled hidden>Select a Performance Over Time rating</option>

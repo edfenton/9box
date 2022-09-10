@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
+import Login from './components/Login';
 import Register from './components/Register';
 import Table from './components/Table';
 import CreateForm from './components/CreateForm';
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
+          <Route element={ <Login /> } path="/login" />
           <Route element={ <Register /> } path="/register" />
           <Route element={ <Table /> } path="/dashboard" default />
           <Route element={ <CreateForm /> } path="/person/create" />

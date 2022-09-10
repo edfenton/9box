@@ -10,8 +10,8 @@ const Register = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ confirmPassword, setConfirmPassword ] = useState("");
-  const [ err, setErr ] = useState("");
   const [ errors, setErrors ] = useState([]);
+  const [ headError, setHeadError ] = useState("");
 
   const submitHandler = async (e) => {
 
@@ -24,10 +24,12 @@ const Register = () => {
       confirmPassword,
     };
     try {
-      await axios.post("http://localhost:8000/api/register", postData);
+      await axios.post("http://localhost:8000/api/users/register", postData);
       navigate("/login");
     } catch (err) {
-      setErr(err.response.data.error);
+      console.log(err.response);
+      setErrors(err.response.data.errors);
+      setHeadError(err.response.data.message);
     }
 
   };
@@ -38,7 +40,7 @@ const Register = () => {
       <div className="col-6 mx-auto">
         <form className="border p-3" onSubmit={ submitHandler }>
           <p className="h1 text-primary">Register</p>
-          { err && <p className="text-danger">{ err }</p>}
+          <p className="text-danger">{ headError ? headError : "" }</p>
           <div>
             <label className="form-label">First Name</label>
             <input
@@ -46,7 +48,7 @@ const Register = () => {
               className="form-control"
               onChange={ (e) => setFirstName(e.target.value) }
               value={ firstName }
-              name={ firstName }
+              name="firstName"
               placeholder="Enter your first name"
             />
             { errors.firstName ? <p className="text-danger">{ errors.firstName.message }</p> : null }
@@ -58,7 +60,7 @@ const Register = () => {
               className="form-control"
               onChange={ (e) => setLastName(e.target.value) }
               value={ lastName }
-              name={ lastName }
+              name="lastName"
               placeholder="Enter your last name"
             />
             { errors.lastName ? <p className="text-danger">{ errors.lastName.message }</p> : null }
@@ -70,7 +72,7 @@ const Register = () => {
               className="form-control"
               onChange={ (e) => setEmail(e.target.value) }
               value={ email }
-              name={ email }
+              name="email"
               placeholder="Enter your email"
             />
             { errors.email ? <p className="text-danger">{ errors.email.message }</p> : null }
@@ -82,7 +84,7 @@ const Register = () => {
               className="form-control"
               onChange={ (e) => setPassword(e.target.value) }
               value={ password }
-              name={ password }
+              name="password"
               placeholder="Enter your password"
             />
             <div className="form-text">Passwords must be between 8 and 32 characters</div>
@@ -95,15 +97,18 @@ const Register = () => {
               className="form-control"
               onChange={ (e) => setConfirmPassword(e.target.value) }
               value={ confirmPassword }
-              name={ confirmPassword }
+              name="confirmPassword"
               placeholder="Confirm your password"
             />
             { errors.confirmPassword ? <p className="text-danger">{ errors.confirmPassword.message }</p> : null }
           </div>
           <div className="d-grid gap-2 col-12 mx-auto mt-3">
-            <button className="btn btn-primary btn-lg" type="submit"><i className="bi bi-person-badge-fill"></i> Register</button>
+            <button className="btn btn-primary" type="submit"><i className="bi bi-person-badge-fill"></i> Register</button>
           </div>
         </form>
+        <div className="d-grid gap-2 col-12 mx-auto mt-3">
+            <button className="btn btn-link" onClick={ (e) => navigate("/login") }>Already Registered?</button>
+        </div>
       </div>
     </div>
 

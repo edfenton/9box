@@ -10,13 +10,18 @@ const ViewPerson = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/people/${ id }`)
+      .get(`http://localhost:8000/api/people/${ id }`, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         setSinglePerson(res.data);
       })
-      .catch((err) => console.log(err));
-  },[id]);
+      .catch((err) => {
+        if(err.response.status === 401) {
+          navigate("/login");
+        }
+        console.log(err);
+      });
+  },[id, navigate]);
 
   return (
     <div>

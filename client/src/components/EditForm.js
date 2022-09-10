@@ -20,7 +20,7 @@ const EditForm = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/people/${ id }`)
+      .get(`http://localhost:8000/api/people/${ id }`, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         setName(res.data.name);
@@ -34,18 +34,26 @@ const EditForm = () => {
         setReady(res.data.ready);
         setLoaded(true);
       })
-      .catch((err) => console.log(err));
-  },[id]);
+      .catch((err) => {
+        if(err.response.status === 401) {
+          navigate("/login");
+        }
+        console.log(err);
+      });
+  },[id, navigate]);
 
   const editHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8000/api/people/${ id }` , { name, area, level, potential, performance, strengths, opportunities, risk, ready })
+      .put(`http://localhost:8000/api/people/${ id }` , { name, area, level, potential, performance, strengths, opportunities, risk, ready }, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         navigate(`/person/view/${ id }`);
       })
       .catch((err) => {
+        if(err.response.status === 401) {
+          navigate("/login");
+        }
         console.log(err.response.data.errors);
         setErrors(err.response.data.errors);
       });
@@ -53,13 +61,18 @@ const EditForm = () => {
 
   const deleteHandler = (e) => {
     axios
-      .delete(`http://localhost:8000/api/people/${ id }`)
+      .delete(`http://localhost:8000/api/people/${ id }`, { withCredentials: true })
       .then((res) => {
         console.log(res);
         console.log(res.data);
         navigate("/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if(err.response.status === 401) {
+          navigate("/login");
+        }
+        console.log(err)
+      });
   };
 
   return (
@@ -77,7 +90,7 @@ const EditForm = () => {
                   className="form-control"
                   onChange={ (e) => setName(e.target.value) }
                   value={ name }
-                  name={ name }
+                  name="name"
                   type="text"
                   placeholder="Enter team member name"
                 />
@@ -89,7 +102,7 @@ const EditForm = () => {
                   className="form-select"
                   aria-label="Default select example"
                   onChange={ (e) => setArea(e.target.value) }
-                  name={ area }
+                  name="area"
                   value={ area }
                 >
                   <option value="none" disabled hidden>Select an Area</option>
@@ -113,7 +126,7 @@ const EditForm = () => {
                   className="form-select"
                   aria-label="Default select example"
                   onChange={ (e) => setLevel(e.target.value) }
-                  name={ level }
+                  name="level"
                   value={ level }
                 >
                   <option value="none" disabled hidden>Select a Level</option>
@@ -140,7 +153,7 @@ const EditForm = () => {
                   className="form-select"
                   aria-label="Default select example"
                   onChange={ (e) => setPotential(e.target.value) }
-                  name={ potential }
+                  name="potential"
                   value={ potential }
                 >
                   <option value="none" disabled hidden>Select a Potential rating</option>
@@ -155,7 +168,7 @@ const EditForm = () => {
                   className="form-select"
                   aria-label="Default select example"
                   onChange={ (e) => setPerformance(e.target.value) }
-                  name={ performance }
+                  name="performance"
                   value={ performance }
                 >
                   <option value="none" disabled hidden>Select a Performance Over Time rating</option>
@@ -179,7 +192,7 @@ const EditForm = () => {
                 <textarea
                   onChange={ (e) => setStrengths(e.target.value) }
                   className="form-control"
-                  name={ strengths }
+                  name="strengths"
                   value={ strengths }
                   placeholder="Enter team member strengths"
                 ></textarea>
@@ -188,7 +201,7 @@ const EditForm = () => {
                 <textarea
                   onChange={ (e) => setOpportunities(e.target.value) }
                   className="form-control"
-                  name={ opportunities }
+                  name="opportunities"
                   value={ opportunities }
                   placeholder="Enter team member development opportunities"
                 ></textarea>
@@ -204,7 +217,7 @@ const EditForm = () => {
                   className="form-select"
                   aria-label="Default select example"
                   onChange={ (e) => setRisk(e.target.value) }
-                  name={ risk }
+                  name="risk"
                   value={ risk }
                 >
                   <option value="Unrated" disabled hidden>Select a Flight Risk rating</option>
@@ -220,7 +233,7 @@ const EditForm = () => {
                   className="form-select"
                   aria-label="Default select example"
                   onChange={ (e) => setReady(e.target.value) }
-                  name={ ready }
+                  name="ready"
                   value={ ready }
                 >
                   <option value="Unrated" disabled hidden>Select a Readiness level</option>

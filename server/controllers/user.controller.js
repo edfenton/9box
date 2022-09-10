@@ -30,7 +30,7 @@ module.exports = {
     User.findOne({ email: req.body.email })
       .then((userRecord) => {
         if(userRecord === null) {
-          res.status(400).json({ message: "Invalid login attempt" })
+          res.status(400).json({ message: "Invalid login attempt" });
         } else {
           bcrypt.compare(req.body.password, userRecord.password)
             .then((isPasswordValid) => {

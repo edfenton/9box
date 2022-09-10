@@ -11,15 +11,18 @@ const Table = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/people")
+      .get("http://localhost:8000/api/people", { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         setTablePersonList(res.data);
       })
       .catch((err) => {
+        if(err.response.status === 401) {
+          navigate("/login");
+        }
         console.log(err.res);
       });
-  },[]);
+  },[navigate]);
 
   return (
     <div>
