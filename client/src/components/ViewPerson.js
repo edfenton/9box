@@ -9,8 +9,8 @@ const ViewPerson = () => {
   const [ singlePerson, setSinglePerson ] = useState({});
 
   const imgSize = {
-    height: "100px",
-    width: "100px"
+    height: "60px",
+    width: "60px"
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const ViewPerson = () => {
       <div className="border rounded shadow p-3">
         <div className="row mb-3">
           <div className="d-flex align-items-center gap-2">
-            <img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={singlePerson.gravitar} alt={`${singlePerson.name} user photo`}></img>
+            <img className="rounded-circle shadow" style={ imgSize } src={singlePerson.gravitar} alt={`${singlePerson.name}`}></img>
             <p className="h2">{ singlePerson.name }</p>
           </div>
         </div>

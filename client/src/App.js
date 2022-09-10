@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Login from './components/Login';
@@ -16,9 +16,10 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
+          <Route path="*" element={<Navigate to="/login" replace />} />
           <Route element={ <Login /> } path="/login" />
           <Route element={ <Register /> } path="/register" />
-          <Route element={ <Table /> } path="/dashboard" default />
+          <Route element={ <Table /> } path="/dashboard" />
           <Route element={ <CreateForm /> } path="/person/create" />
           <Route element={ <ViewPerson /> } path="/person/view/:id" />
           <Route element={ <EditForm /> } path="person/edit/:id" />
