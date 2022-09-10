@@ -9,6 +9,11 @@ const Table = (props) => {
   const navigate = useNavigate();
   const [ tablePersonList, setTablePersonList ] = useState([]);
 
+  const imgSize = {
+    height: "50px",
+    width: "50px"
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/people", { withCredentials: true })
@@ -25,7 +30,7 @@ const Table = (props) => {
   },[navigate]);
 
   return (
-    <div>
+    <div className="shadow p-3 rounded">
       <div className="table-responsive">
         <table className="table table-bordered table-sm">
           <thead>
@@ -55,7 +60,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Specialized" && name.performance === "Exceptional").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -76,7 +81,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Versatile" && name.performance === "Exceptional").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -97,7 +102,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Broad" && name.performance === "Exceptional").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -121,7 +126,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Specialized" && name.performance === "Consistent").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -142,7 +147,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Versatile" && name.performance === "Consistent").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -163,7 +168,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Broad" && name.performance === "Consistent").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -187,7 +192,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Specialized" && name.performance === "Inconsistent").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -208,7 +213,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Versatile" && name.performance === "Inconsistent").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>
@@ -229,7 +234,7 @@ const Table = (props) => {
                 <ul className="list-group-flush">
                   {tablePersonList.filter(name => name.potential === "Broad" && name.performance === "Inconsistent").map((oneTablePerson, index) => {
                     return (
-                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><i className="bi bi-person-circle"></i> { oneTablePerson.name }</button></li>
+                      <li key={ index } className="list-group-item m-1"><button className="btn btn-outline-dark" onClick={ () => navigate(`/person/view/${ oneTablePerson._id }`) }><img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={oneTablePerson.gravitar} alt={`${oneTablePerson.name} user photo`}></img> { oneTablePerson.name }</button></li>
                     );
                   })}
                 </ul>

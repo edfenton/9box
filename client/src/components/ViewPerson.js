@@ -8,6 +8,11 @@ const ViewPerson = () => {
   const navigate = useNavigate();
   const [ singlePerson, setSinglePerson ] = useState({});
 
+  const imgSize = {
+    height: "100px",
+    width: "100px"
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/people/${ id }`, { withCredentials: true })
@@ -25,15 +30,24 @@ const ViewPerson = () => {
 
   return (
     <div>
-      <div className="border p-3">
-        <div className="row">
-        <p className="h2">{ singlePerson.name }</p>
+      <div className="border rounded shadow p-3">
+        <div className="row mb-3">
+          <div className="d-flex align-items-center gap-2">
+            <img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={singlePerson.gravitar} alt={`${singlePerson.name} user photo`}></img>
+            <p className="h2">{ singlePerson.name }</p>
+          </div>
         </div>
-        <div className="row mb-3 pb-3 border-bottom">
+        <div className="row">
           <div className="col">
             <p><strong>Name:</strong></p>
             <p>{ singlePerson.name }</p>
           </div>
+          <div className="col">
+            <p><strong>Email:</strong></p>
+            <p>{ singlePerson.email }</p>
+          </div>
+        </div>
+        <div className="row mb-3 pb-3 border-bottom">
           <div className="col">
             <p><strong>Area:</strong></p>
             <p>{ singlePerson.area }</p>

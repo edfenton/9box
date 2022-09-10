@@ -7,6 +7,8 @@ const EditForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [ name, setName ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ gravitar, setGravitar ] = useState("");
   const [ area, setArea ] = useState("");
   const [ level, setLevel ] = useState("");
   const [ potential, setPotential ] = useState("");
@@ -18,12 +20,19 @@ const EditForm = () => {
   const [ errors, setErrors ] = useState([]);
   const [ loaded, setLoaded ] = useState(false);
 
+  const imgSize = {
+    height: "100px",
+    width: "100px"
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/people/${ id }`, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         setName(res.data.name);
+        setEmail(res.data.email);
+        setGravitar(res.data.gravitar);
         setArea(res.data.area);
         setLevel(res.data.level);
         setPotential(res.data.potential);
@@ -45,7 +54,7 @@ const EditForm = () => {
   const editHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8000/api/people/${ id }` , { name, area, level, potential, performance, strengths, opportunities, risk, ready }, { withCredentials: true })
+      .put(`http://localhost:8000/api/people/${ id }` , { name, email, gravitar, area, level, potential, performance, strengths, opportunities, risk, ready }, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         navigate(`/person/view/${ id }`);
@@ -79,11 +88,14 @@ const EditForm = () => {
     <div>
       {
         loaded && <>
-          <form className="border p-3" onSubmit={ editHandler }>
-            <div className="row">
-              <p className="h2">Edit { name }</p>
+          <form className="border rounded shadow p-3" onSubmit={ editHandler }>
+            <div className="row mb-3">
+              <div className="d-flex align-items-center gap-2">
+                <img className="img-thumbnail rounded-circle shadow" style={ imgSize } src={ gravitar } alt={`${ name } user photo`}></img>
+                <p className="h2">Edit { name }</p>
+              </div>
             </div>
-            <div className="row mb-3 pb-3 border-bottom">
+            <div className="row">
               <div className="col">
                 <label className="form-label">Name</label>
                 <input 
@@ -96,6 +108,21 @@ const EditForm = () => {
                 />
                 { errors.name ? <p className="text-danger">{ errors.name.message }</p> : null }
               </div>
+              <div className="col">
+                <label className="form-label">Email</label>
+                <input 
+                  className="form-control"
+                  onChange={ (e) => setEmail(e.target.value) }
+                  value={ email }
+                  name="email"
+                  type="email"
+                  placeholder="Enter team member email"
+                />
+                <div className="form-text">Email is used to retrieve team member's Gravitar</div>
+                { errors.email ? <p className="text-danger">{ errors.email.message }</p> : null }
+              </div>
+            </div>
+            <div className="row mb-3 pb-3 border-bottom">
               <div className="col">
                 <label className="form-label">Area</label>
                 <select

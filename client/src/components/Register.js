@@ -11,7 +11,6 @@ const Register = () => {
   const [ password, setPassword ] = useState("");
   const [ confirmPassword, setConfirmPassword ] = useState("");
   const [ errors, setErrors ] = useState([]);
-  const [ headError, setHeadError ] = useState("");
 
   const submitHandler = async (e) => {
 
@@ -29,7 +28,6 @@ const Register = () => {
     } catch (err) {
       console.log(err.response);
       setErrors(err.response.data.errors);
-      setHeadError(err.response.data.message);
     }
 
   };
@@ -38,9 +36,8 @@ const Register = () => {
 
     <div className="row">
       <div className="col-6 mx-auto">
-        <form className="border p-3" onSubmit={ submitHandler }>
+        <form className="border p-3 rounded shadow" onSubmit={ submitHandler }>
           <p className="h1 text-primary">Register</p>
-          <p className="text-danger">{ headError ? headError : "" }</p>
           <div>
             <label className="form-label">First Name</label>
             <input

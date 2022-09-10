@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const md5 = require('md5');
 
 const PersonSchema = new mongoose.Schema({
     name: {
@@ -10,17 +11,22 @@ const PersonSchema = new mongoose.Schema({
       unique: true,
       uniqueCaseInsensitive: true
     },
-    // email: {
-    //   type: String,
-    //   require: [ true, "Email is required" ],
-    //   minLength: [ 3, "Email must be at least 3 characters long" ],
-    //   maxLength: [ 255, "Email must be at most 255 characters long" ],
-    //   validate: {
-    //     validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
-    //     message: "Please enter a valid email"
-    //   },
-    //   unique: true
-    // },
+    email: {
+      type: String,
+      require: [ true, "Email is required" ],
+      minLength: [ 3, "Email must be at least 3 characters long" ],
+      maxLength: [ 255, "Email must be at most 255 characters long" ],
+      validate: {
+        validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
+        message: "Please enter a valid email"
+      },
+      trim: true,
+      lowercase: true,
+      unique: true
+    },
+    gravitar: {
+      type: String
+    },
     area: {
       type: String,
       require: [ true, "Area is required" ],
@@ -84,6 +90,13 @@ const PersonSchema = new mongoose.Schema({
 PersonSchema.plugin(uniqueValidator, {
   type: 'mongoose-unique-validator',
   message: 'Team member {PATH} must be unique'
+});
+
+PersonSchema.pre('save', function(next) {
+  console.log("Inside pre-save");
+  hashedEmail = md5(this.email);
+  this.gravitar = `https://www.gravatar.com/avatar/${hashedEmail}.jpg?s=200&r=g&d=retro`;
+  next();
 });
 
 module.exports = mongoose.model('Person', PersonSchema);

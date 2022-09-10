@@ -7,20 +7,15 @@ const Login = () => {
   const navigate = useNavigate();
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
-  const [ errors, setErrors ] = useState([]);
   const [ headError, setHeadError ] = useState("");
 
-  const login = event => {
-    console.log(email);
-    console.log(password);
-    event.preventDefault();
-    axios.post("http://localhost:8000/api/users/login", {
-      email: email,
-      password: password,
-    },
-    {
-      withCredentials: true
-    })
+  const login = e => {
+    e.preventDefault();
+    const postData = {
+      email,
+      password,
+    }
+    axios.post("http://localhost:8000/api/users/login", postData, { withCredentials: true })
     .then((res) => {
       console.log(res.cookie);
       console.log(res);
@@ -29,8 +24,6 @@ const Login = () => {
     })
     .catch(err => {
       console.log(err.response);
-      console.log(err.response.data.errors);
-      setErrors(err.response.data.errors);
       console.log(err.response.data.message);
       setHeadError(err.response.data.message);
     });
@@ -40,20 +33,20 @@ const Login = () => {
 
     <div className="row">
       <div className="col-6 mx-auto">
-        <form className="border p-3" onSubmit={ login }>
+        <form className="border p-3 rounded shadow" onSubmit={ login }>
           <p className="h1 text-primary">Login</p>
           <p className="text-danger">{ headError ? headError : "" }</p>
           <div>
             <label className="form-label">Email</label>
             <input
-              type="text"
+              type="email"
               className="form-control"
               onChange={ (e) => setEmail(e.target.value) }
               value={ email }
               name="email"
               placeholder="Enter your email"
+              required
             />
-            { errors.email ? <p className="text-danger">{ errors.email.message }</p> : null }
           </div>
           <div>
             <label className="form-label">Password</label>
@@ -64,9 +57,9 @@ const Login = () => {
               value={ password }
               name="password"
               placeholder="Enter your password"
+              required
             />
             <div className="form-text">Passwords must be between 8 and 32 characters</div>
-            { errors.password ? <p className="text-danger">{ errors.password.message }</p> : null }
           </div>
           <div className="d-grid gap-2 col-12 mx-auto mt-3">
             <button className="btn btn-primary" type="submit"><i className="bi bi-person-badge-fill"></i> Login</button>

@@ -6,6 +6,7 @@ const CreateForm = () => {
 
   const navigate = useNavigate();
   const [ name, setName ] = useState("");
+  const [ email, setEmail ] = useState("");
   const [ area, setArea ] = useState("");
   const [ level, setLevel ] = useState("");
   const [ potential, setPotential ] = useState("");
@@ -15,7 +16,7 @@ const CreateForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/people", { name, area, level, potential, performance }, { withCredentials: true })
+      .post("http://localhost:8000/api/people", { name, email, area, level, potential, performance }, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
         navigate("/dashboard");
@@ -31,11 +32,11 @@ const CreateForm = () => {
 
   return (
     <div>
-      <form className="border p-3" onSubmit={ submitHandler }>
+      <form className="border p-3 rounded shadow" onSubmit={ submitHandler }>
         <div className="row">
           <p className="h2">Add Team Member</p>
         </div>
-        <div className="row mb-3 pb-3 border-bottom">
+        <div className="row">
           <div className="col">
             <label className="form-label">Name</label>
             <input 
@@ -48,6 +49,21 @@ const CreateForm = () => {
             />
             { errors.name ? <p className="text-danger">{ errors.name.message }</p> : null }
           </div>
+          <div className="col">
+            <label className="form-label">Email</label>
+            <input 
+              className="form-control"
+              onChange={ (e) => setEmail(e.target.value) }
+              value={ email }
+              name="email"
+              type="email"
+              placeholder="Enter team member email"
+            />
+            <div className="form-text">Email is used to retrieve team member's Gravitar</div>
+            { errors.email ? <p className="text-danger">{ errors.email.message }</p> : null }
+          </div>
+        </div>
+        <div className="row mb-3 pb-3 border-bottom">
           <div className="col">
             <label className="form-label">Area</label>
             <select
@@ -101,7 +117,7 @@ const CreateForm = () => {
         </div>
         <div className="row">
           <div className="col">
-            <p>How much agility and aspiration this person has to be an e!ective leader in more challenging roles.</p>
+            <p>How much agility and aspiration this person has to be an effective leader in more challenging roles.</p>
             <p>Focus on breadth of roles based on learning agility.</p>
           </div>
           <div className="col">

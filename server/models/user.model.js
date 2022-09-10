@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
@@ -23,6 +24,7 @@ const UserSchema = new mongoose.Schema({
       validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
       message: "Please enter a valid email"
     },
+    unique: true,
   },
   password: {
     type: String,
@@ -31,6 +33,11 @@ const UserSchema = new mongoose.Schema({
     maxLength: [ 32, "Password must be at most 32 characters long"]
   }
 }, {timestamps: true});
+
+UserSchema.plugin(uniqueValidator, {
+  type: 'mongoose-unique-validator',
+  message: 'User {PATH} must be unique'
+});
 
 UserSchema.virtual('confirmPassword')
   .get( () => this._confirmPassword )
